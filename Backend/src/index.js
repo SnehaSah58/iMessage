@@ -15,6 +15,7 @@ import job from "./lib/cron.js";
 
 import clerkWebhook from "./webhooks/clerk.js";
 import authRoutes from "./routes/auth.route.js";
+import messageRoutes from "./routes/message.route.js";
 
 const app = express();
 
@@ -33,7 +34,8 @@ app.get("/health", (req,res)=>{
     res.status(200).json({ ok:true });
 });
 
-app.use("api/auth" , authRoutes)
+app.use("api/auth" , authRoutes);
+app.use("api/messages" , messageRoutes);
 
 if(fs.existsSync(publicDir)){          // means-> does public folder exists
     app.use(express.static(publicDir))  //by middleware serve the built react files

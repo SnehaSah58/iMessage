@@ -20,8 +20,10 @@ const messageSchema = new mongoose.Schema({
     video: {
         type: String,
     },
-});
+},
+    { timestamps: true },
+);
 
-const  message = mongoose.model("Message",messageSchema);
+const  Message = mongoose.model("Message",messageSchema);
 
-export default message;
+export default Message;

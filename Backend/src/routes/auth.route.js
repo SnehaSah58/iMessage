@@ -1,3 +1,5 @@
+//authentication route -> decide that the authentication req will go to which controller func.
+
 import express from "express";
 import { checkAuth } from "../controllers/auth.controller.js";
 import { protectRoute } from "../middleware/auth.middleware.js";

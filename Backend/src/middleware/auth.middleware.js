@@ -1,3 +1,5 @@
+// for security checking -> middleware controller se phle run hota hai.
+
 import { getAuth } from "@clerk/express";
 import User from "../models/user.model.js";
 
