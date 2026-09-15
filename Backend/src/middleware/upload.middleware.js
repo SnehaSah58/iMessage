@@ -15,7 +15,6 @@ export const upload = multer({
             cb(new Error("Only image and video uploads are allowed"));
             return;
         }
-
         cb(null, true);
     },
 });

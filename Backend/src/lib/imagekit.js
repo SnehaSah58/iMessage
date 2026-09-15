@@ -1,13 +1,13 @@
 // To upload file on cloud storage.
 
-import ImageKit, { toFile, tofile } from "@imagekit/nodejs";
+import ImageKit, { toFile } from "@imagekit/nodejs";
 
 const imagekit = new ImageKit({ privateKey: process.env.IMAGEKIT_PRIVATE_KEY })  // creating obj
 
-function hasImagekitConfig() {
+export function hasImageKitConfig() {
     return Boolean(process.env.IMAGEKIT_PRIVATE_KEY);
-
 }
+
 
 // creating safe filename taki integrated rhe
 function createFilename(originalName = "upload") {
@@ -20,7 +20,7 @@ function createFilename(originalName = "upload") {
  * @see https://imagekit.io/docs/api-reference/upload-file/upload-file 
 */
 
-async function uploadChatMedia(file) {
+export async function uploadChatMedia(file) {
     const fileName = createFilename(file.originalName);
 
     const result = await imagekit.files.upload({
@@ -32,4 +32,4 @@ async function uploadChatMedia(file) {
    
 }
 
-export { uploadChatMedia, hasImagekitConfig }; // to use in any files
+//export { uploadChatMedia, hasImagekitConfig }; // to use in any files

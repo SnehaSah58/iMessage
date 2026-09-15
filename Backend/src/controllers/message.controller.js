@@ -8,8 +8,11 @@
 //3. Id
 //4. send msg
 
+
 import User from "../models/user.model.js";
 import Message from "../models/message.model.js";
+import { hasImageKitConfig, uploadChatMedia } from "../lib/imagekit.js";
+import { getReceiverSockedId } from "../lib/socket.js";
 
 export async function getUsersForSidebar(req,res) {
     try {
@@ -104,7 +107,12 @@ export async function sendMessage(req, res) {
     });
 
     await newMessage.save();
-    // realtime with socketio
+
+    const receiverSocketId = getReceiverSockedId(receiverId);
+    // only send msg in realtime if user is online
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
     
     res.status(201).json(newMessage);
   } catch (error) {
