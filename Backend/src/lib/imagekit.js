@@ -15,10 +15,12 @@ function createFilename(originalName = "upload") {
     return `chat-${Date.now()}-${safeName}`;
 }
 
+
 /** 
  * Upload image or video to Imagekit
  * @see https://imagekit.io/docs/api-reference/upload-file/upload-file 
 */
+
 
 export async function uploadChatMedia(file) {
     const fileName = createFilename(file.originalName);
